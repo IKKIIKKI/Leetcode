@@ -1,0 +1,24 @@
+public class Solution {
+   public int[] twoSum(int[] numbers, int target) {
+        int []result=new int[2];
+        ArrayList<Integer>list=new ArrayList<Integer>();
+        for(int i=0;i<numbers.length;i++){
+        	list.add(numbers[i]);
+        }
+        int i=0,j=numbers.length-1;
+        Arrays.sort(numbers);
+        while(true){
+        	if(numbers[i]+numbers[j]==target){
+        		break;
+        	}
+        	else if(numbers[i]+numbers[j]<target)
+        		i++;
+        	else
+        		j--;
+        }
+        result[0]=list.indexOf(numbers[i])+1;
+        result[1]=list.lastIndexOf(numbers[j])+1;
+        Arrays.sort(result);
+        return result;
+    }
+}
