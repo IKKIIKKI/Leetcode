@@ -1,0 +1,38 @@
+public class Solution {
+    public int romanToInt(String s) {
+        String[] a={"ZCW","I","II","III","IV","V","VI","VII","VIII","IX"}; 
+		String[] b={"ZCW","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};
+		String[] c={"ZCW","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"}; 
+		String[] d={"ZCW","M","MM","MMM"};
+		int cnt=0;
+		for(int i=d.length-1;i>0;i--){
+			if(s.startsWith(d[i])){
+				cnt+=1000*i;
+				s = s.substring(d[i].length());
+				break;
+			}
+		}
+		for(int i=c.length-1;i>0;i--){
+			if(s.startsWith(c[i])){
+				cnt+=100*i;
+				s = s.substring(c[i].length());
+				break;
+			}
+		}
+		for(int i=b.length-1;i>0;i--){
+			if(s.startsWith(b[i])){
+				cnt+=10*i;
+				s = s.substring(b[i].length());
+				break;
+			}
+		}
+		for(int i=a.length-1;i>0;i--){
+			if(s.startsWith(a[i])){
+				cnt+=i;
+				s = s.substring(a[i].length());
+				break;
+			}
+		}
+		return cnt;
+    }
+}
