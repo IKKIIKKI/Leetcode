@@ -1,0 +1,23 @@
+public class Solution {
+    List<List<Integer>> lists =new ArrayList<>();
+	List<Integer> list = new ArrayList<>();
+	public List<List<Integer>> combinationSum(int[] candidates, int target) {
+		Arrays.sort(candidates);
+		solve(candidates, target, 0, 0);
+		return lists;
+    }
+	public void solve(int[]arr, int target, int sum, int loc){
+		if(sum>target) return;
+		if(sum==target){
+			lists.add(new ArrayList<>(list));
+			return;
+		}
+		for(int i=loc;i<arr.length;i++){
+			sum += arr[i];
+			list.add(arr[i]);
+			solve(arr, target, sum, i);
+			list.remove(list.size()-1);
+			sum -= arr[i];
+		}
+	}
+}
