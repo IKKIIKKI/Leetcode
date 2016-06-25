@@ -1,0 +1,28 @@
+public class Solution {
+    List<List<Integer>> lists =new ArrayList<>();
+	List<Integer> list = new ArrayList<>();
+	Set<List<Integer>> sets = new HashSet<>();
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
+		solve(candidates, target, 0, 0);
+		Iterator iterator = sets.iterator();
+		while(iterator.hasNext())
+			lists.add((List)(iterator.next()));
+		return lists;
+    }
+    public void solve(int[]arr, int target, int sum, int loc){
+		if(sum>target) return;
+		if(sum==target){
+			Collections.sort(list);
+			sets.add(new ArrayList<>(list));
+			return;
+		}
+		for(int i=loc;i<arr.length;i++){
+			sum += arr[i];
+			list.add(arr[i]);
+			solve(arr, target, sum, i+1);
+			list.remove(list.size()-1);
+			sum -= arr[i];
+		}
+	}
+}
