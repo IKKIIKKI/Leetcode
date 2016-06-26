@@ -1,0 +1,9 @@
+public class Solution {
+    public boolean isNumber(String s) {
+        s = s.trim();
+		String regex = "[-+]?(\\d+\\.?|\\.\\d+)\\d*(e[-+]?\\d+)?";
+		if (s.matches(regex)) 
+			return true;
+		return false;
+    }
+}
