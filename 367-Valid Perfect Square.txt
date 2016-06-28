@@ -1,0 +1,17 @@
+public class Solution {
+    public boolean isPerfectSquare(int num) {
+        int temp = num;
+        int cnt = 1;
+        while(temp>10){
+            cnt *= 10;
+            temp /= 10;
+        }
+        if(cnt == 1)
+            cnt = num;
+        for(int i=1; i<=cnt; i++){
+            if(i*i == num)
+                return true;
+        }
+        return false;
+    }
+}
