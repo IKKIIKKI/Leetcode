@@ -1,0 +1,32 @@
+public class Solution {
+    public static void setZeroes(int[][] matrix) {
+		Set<Integer> row = new HashSet<>();
+		Set<Integer> col = new HashSet<>();
+		int rowcnt = matrix.length;
+		if(rowcnt == 0)
+			return ;
+		int colcnt = matrix[0].length;
+		if(colcnt == 0)
+			return ;
+		for(int i=0;i<rowcnt;i++)
+			for(int j=0;j<colcnt;j++){
+				if(matrix[i][j] == 0){
+					row.add(i);
+					col.add(j);
+				}
+			}
+		Iterator iterator = row.iterator();
+		while(iterator.hasNext()){
+			Integer integer = (Integer)iterator.next();
+			for(int j=0;j<colcnt;j++)
+				matrix[integer][j] = 0;
+		}
+		iterator = col.iterator();
+		while(iterator.hasNext()){
+			Integer integer = (Integer)iterator.next();
+			for(int i=0;i<rowcnt;i++)
+				matrix[i][integer] = 0;
+		}
+		return ;
+    }
+}
