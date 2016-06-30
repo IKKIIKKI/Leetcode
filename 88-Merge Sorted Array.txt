@@ -1,0 +1,29 @@
+public class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+		int loc = m;
+        for(int i=0;i<n;i++){
+        	nums1[loc++] = nums2[i];
+        }
+        Half_Sort(nums1, m+n);
+    }
+	public void Half_Sort(int ar[],int len) { //折半排序 
+	    int i,j,temp,low,mid,high;    
+	    for(i=1;i<len;i++)          //最开始第一个元素仍然被看作已经排好的部分  
+	    {  
+	        low=0;                  //最低位置  
+	        temp=ar[i];             //要插入的元素,已经排好序的最高位的下一位元素              
+	        high=i-1;               //最高位置  
+	        while(low<=high)          
+	        {  
+	            mid=(low+high)/2;   //折中,取中间位置  
+	            if(ar[mid]>temp)    //判断要插入的元素和中间元素的大小  
+	                high=mid-1;     //中间元素大,最高位置取当前中间位置的前一位,重新再求中间位置  
+	            else  
+	                low=mid+1;      //中间元素小,最高位置取当前中间位置的后一位,重新再求中间位置  
+	        }  
+	        for(j=i-1;j>high;j--)   //将(high+1)～i的所有元素后移一位  
+	            ar[j+1]=ar[j];        
+	        ar[high+1]=temp;        //插入元素  
+	    }  
+	}
+}
