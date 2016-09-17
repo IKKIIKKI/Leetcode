@@ -1,0 +1,40 @@
+public class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+		List<List<Integer>> lists = new ArrayList<>();
+		Set<List<Integer>> set =  new HashSet<>();
+		int len = nums.length;
+		for(int i=0;i<len-2;i++){
+			int begin = i+1;
+			int end = len-1;
+			while(begin < end){
+			    if (begin>i+1 && nums[begin]== nums[begin-1]) {  
+	                begin++;  
+	                continue;  
+	            }  
+	            if (end<len-1 && nums[end] == nums[end+1]) {  
+	                end--;  
+	                continue;  
+	            }  
+				int cnt = nums[i] + nums[begin] + nums[end];
+				if(cnt == 0){
+					List<Integer> list = new ArrayList<>();
+					list.add(nums[i]);
+					list.add(nums[begin]);
+					list.add(nums[end]);
+					Collections.sort(list);
+					set.add(list);
+					begin++;
+				}
+				else if(cnt < 0)
+					begin++;
+				else
+					end--;
+			}
+		}
+		Iterator<List<Integer>> iterator = set.iterator();
+		while(iterator.hasNext())
+			lists.add(iterator.next());
+		return lists;
+    }
+}
