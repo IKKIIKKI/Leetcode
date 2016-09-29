@@ -1,0 +1,13 @@
+public class Solution {
+    public int maxSubArray(int[] nums) {
+        int cnt = 0;
+        int max = nums[0]; 
+        for(int obj:nums){
+        	cnt+=obj;
+        	max = Math.max(cnt, max);
+        	if(cnt<0)
+        		cnt = 0;
+        }
+        return max;
+    }
+}
