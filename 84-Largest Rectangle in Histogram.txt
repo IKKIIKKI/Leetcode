@@ -1,0 +1,32 @@
+public class Solution {
+    public int largestRectangleArea(int[] heights) {
+        Stack<Integer> stack = new Stack<>();
+        int max = 0;
+        stack.push(0);
+		for(int obj:heights){
+			if(obj>=stack.peek())
+				stack.push(obj);
+			else{
+				int cnt = 1;
+				while(!stack.empty()){
+					int number = stack.peek();
+					if(number<obj)
+						break;
+					max = Math.max(number*cnt, max);
+					cnt++;
+					stack.pop();
+				}
+				for(int i=0;i<cnt;i++)
+					stack.push(obj);
+			}	
+		}
+		int cnt = 1;
+		while(!stack.empty()){
+			max = Math.max(max, stack.peek()*cnt);
+			stack.pop();
+			cnt++;
+		}
+		
+		return max;
+    }
+}
