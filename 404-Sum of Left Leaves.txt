@@ -1,0 +1,34 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    static ArrayList<Integer> list = new ArrayList<>();
+    public int sumOfLeftLeaves(TreeNode root) {
+        if(root == null)
+        	return 0;
+        int cnt = 0;
+        list.clear();
+        count(root);
+		Iterator<Integer>it = list.iterator();
+		while(it.hasNext()){
+			Integer tmp = it.next();
+			cnt += tmp;
+		}
+        return cnt;
+    }
+    public void count(TreeNode node){
+		if(node.left!=null&&node.left.left==null&&node.left.right==null){
+			list.add(node.left.val);
+		}
+		if(node.left!=null)
+			count(node.left);
+		if(node.right!=null)
+			count(node.right);
+	}
+}
