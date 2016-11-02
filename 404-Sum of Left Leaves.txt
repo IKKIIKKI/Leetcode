@@ -13,7 +13,7 @@ public class Solution {
         if(root == null)
         	return 0;
         int cnt = 0;
-        list.clear();
+        list.clear();//如果没有的话不清空
         count(root);
 		Iterator<Integer>it = list.iterator();
 		while(it.hasNext()){
